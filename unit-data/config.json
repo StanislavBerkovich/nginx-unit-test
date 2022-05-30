@@ -1,0 +1,31 @@
+{
+  "listeners": {
+      "*:80": {
+          "pass": "routes"
+      }
+  },
+
+  "routes": [
+      {
+          "action": {
+              "share": "/app/public$uri",
+              "fallback": {
+                  "pass": "applications/rails"
+              }
+          }
+      }
+  ],
+
+  "applications": {
+      "rails": {
+          "type": "ruby",
+          "script": "config.ru",
+          "processes": 1,
+          "threads": 5,
+          "limits": {
+            "timeout": 30
+          },
+          "working_directory": "/app/"
+      }
+  }
+}
