@@ -7,6 +7,7 @@ RUN apt update && apt-get install -qq -y --no-install-recommends \
 RUN gem install bundler
 WORKDIR /app
 COPY ./app/Gemfile .
+COPY ./app/Gemfile.lock .
 RUN bundle install -j 10
 COPY ./app /app
 
