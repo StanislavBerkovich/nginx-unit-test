@@ -23,7 +23,7 @@
           "processes": 1,
           "threads": 5,
           "limits": {
-            "timeout": 30
+            "timeout": 60
           },
           "working_directory": "/app/"
       }
