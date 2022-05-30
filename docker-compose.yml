@@ -1,0 +1,39 @@
+version: '3.4'
+services:
+  postgres:
+    image: aa8y/postgres-dataset:all
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+
+  app_unit:
+    build:
+      context: ./
+      dockerfile: ./unit-data/Dockerfile
+    ports:
+      - '8080:80'
+    depends_on:
+      - postgres
+
+  app_puma:
+    build:
+      context: ./
+      dockerfile: ./puma/Dockerfile
+    command: bundle exec rails s -p 3000 -b 0.0.0.0
+    ports:
+      - '8080:3000'
+    depends_on:
+      - postgres
+
+  tank:
+    image: direvius/yandex-tank
+    volumes:
+      - ./tank:/var/loadtest
+
+
+
+
+
+
