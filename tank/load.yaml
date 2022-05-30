@@ -1,0 +1,15 @@
+overload:
+  enabled: true
+  package: yandextank.plugins.DataUploader
+  token_file: token.txt
+phantom:
+  address: app_unit:80
+  load_profile:
+    load_type: rps
+    schedule: line(1, 100, 1m)
+  uris:
+    - /fibonacci/10
+    - /fibonacci/15
+    - /fibonacci/20
+telegraf:
+  enabled: false
