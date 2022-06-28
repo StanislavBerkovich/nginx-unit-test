@@ -12,8 +12,6 @@ services:
     build:
       context: ./
       dockerfile: ./unit-data/Dockerfile
-    ports:
-      - '8080:80'
     depends_on:
       - postgres
     deploy:
@@ -27,8 +25,6 @@ services:
       context: ./
       dockerfile: ./puma/Dockerfile
     command: bundle exec rails s -p 3000 -b 0.0.0.0
-    ports:
-      - '8080:3000'
     depends_on:
       - postgres
     deploy:
@@ -37,10 +33,18 @@ services:
           cpus: '2'
           memory: '1000M'
 
-  tank:
+  tank_unit:
     image: direvius/yandex-tank
     volumes:
-      - ./tank:/var/loadtest
+      - ./tank/load_unit.yaml:/var/loadtest/load.yaml
+      - ./tank/token.txt:/var/loadtest/token.txt
+
+  tank_puma:
+    image: direvius/yandex-tank
+    volumes:
+      - ./tank/load_puma.yaml:/var/loadtest/load.yaml
+      - ./tank/token.txt:/var/loadtest/token.txt
+
 
 
 

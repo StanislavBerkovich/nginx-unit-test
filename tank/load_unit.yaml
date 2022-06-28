@@ -2,14 +2,18 @@ overload:
   enabled: true
   package: yandextank.plugins.DataUploader
   token_file: token.txt
+  job_name: Unit, 1 process, 5 threads, timeout 65
+  job_dsc: >
+    step(20, 36, 2, 600)
+    uris:
+    - /nplus1/10
 phantom:
   address: app_unit:80
   load_profile:
     load_type: rps
-    schedule: line(1, 100, 1m)
+    schedule: step(20, 36, 2, 600)
   uris:
-    - /fibonacci/10
-    - /fibonacci/15
-    - /fibonacci/20
+    - /nplus1/10
+  timeout: 65s
 telegraf:
   enabled: false

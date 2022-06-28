@@ -1,0 +1,19 @@
+overload:
+  enabled: true
+  package: yandextank.plugins.DataUploader
+  token_file: token.txt
+  job_name: Puma, 1 process, 5 threads, timeout 65
+  job_dsc: >
+    step(20, 36, 2, 600)
+    uris:
+    - /nplus1/10
+phantom:
+  address: app_puma:3000
+  load_profile:
+    load_type: rps
+    schedule: step(20, 36, 2, 600)
+  uris:
+    - /nplus1/10
+  timeout: 65s
+telegraf:
+  enabled: false

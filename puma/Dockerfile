@@ -11,5 +11,4 @@ COPY ./app/Gemfile.lock .
 RUN bundle install -j 10
 COPY ./app /app
 
-RUN chown -R unit:unit /app
 
