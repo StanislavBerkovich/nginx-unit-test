@@ -4,16 +4,16 @@ overload:
   token_file: token.txt
   job_name: Unit, 1 process, 5 threads, timeout 65
   job_dsc: >
-    step(20, 36, 2, 600)
+    step(11, 26, 2, 600)
     uris:
-    - /nplus1/10
+    - /pg_sleep/10/10
 phantom:
   address: app_unit:80
   load_profile:
     load_type: rps
-    schedule: step(20, 36, 2, 600)
+    schedule: step(11, 26, 2, 600)
   uris:
-    - /nplus1/10
+    - /pg_sleep/10/10
   timeout: 65s
 telegraf:
   enabled: false
